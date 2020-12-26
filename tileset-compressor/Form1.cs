@@ -65,7 +65,7 @@ namespace tileset_compressor
             {
                 if (File.Exists(Path.Combine(dir, "data.js"))
                     && Directory.Exists(Path.Combine(dir, "floors"))
-                    && Directory.Exists(Path.Combine(dir, "images")))
+                    && Directory.Exists(Path.Combine(dir, "tilesets")))
                 {
                     directory = dir;
                     break;
@@ -73,7 +73,7 @@ namespace tileset_compressor
             }
             if (directory == null)
             {
-                addMsg("无法找到floors目录，images目录或data.js文件！");
+                addMsg("无法找到floors目录，tilesets目录或data.js文件！");
                 addMsg("------ 处理中断，退出 ------");
                 return;
             }
@@ -277,12 +277,12 @@ namespace tileset_compressor
             closeBitmap();
             tilesetName = name;
             addMsg("正在打开素材文件"+tilesetName+"...");
-            if (!File.Exists(Path.Combine(directory, "images", tilesetName)))
+            if (!File.Exists(Path.Combine(directory, "tilesets", tilesetName)))
             {
                 addMsg("ERROR: 无法打开文件" + tilesetName);
                 return;
             }
-            tileset = (Bitmap) Image.FromFile(Path.Combine(directory, "images", tilesetName));
+            tileset = (Bitmap) Image.FromFile(Path.Combine(directory, "tilesets", tilesetName));
         }
 
         private void closeBitmap()
@@ -317,7 +317,7 @@ namespace tileset_compressor
             }
             try
             {
-                var path = Path.Combine(directory, "images", "tilesets.min.png");
+                var path = Path.Combine(directory, "tilesets", "tilesets.min.png");
                 File.Delete(path);
                 bitmap.Save(path, ImageFormat.Png);
                 graphics.Dispose();
