@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -179,7 +178,7 @@ namespace tileset_compressor
                     string content = string.Join("\r\n", File.ReadAllLines(path).Skip(1));
                     JObject info = (JObject) JsonConvert.DeserializeObject(content);
                     // 获得map, bgmap, fgmap
-                    foreach (var s in new[] {"map", "bgmap", "fgmap"})
+                    foreach (var s in new[] {"map", "bgmap", "fgmap", "bg2map", "fg2map"})
                     {
                         if (info[s] != null)
                         {
